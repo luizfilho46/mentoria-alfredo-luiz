@@ -3,6 +3,10 @@ Recursos de Código trabalhado na Mentoria
 
 ## Programação, Estrutura de Dados e Algoritmos
 ### Recursos:
+#### Material Didático
+- [Marcos Castilho da UFPR](https://www.inf.ufpr.br/marcos/livro_alg1/livro_alg1.pdf)
+- [Carla Negri](https://www.ime.usp.br/~mota/livros/livro_AAED.pdf)
+- [YT Carla Negri](https://www.youtube.com/watch?v=_HBTCUNPxOg&list=PLncEdvQ20-mgGanwuFczm-4IwIdIcIiha)
 #### Dojo
 - Dojo : https://dojopuzzles.com/
 - Randori Kata
@@ -13,6 +17,12 @@ Recursos de Código trabalhado na Mentoria
 - https://leetcode.com/
 
 ## Engenharia de Software
+### Recursos
+#### Material Didático
+- [Marco Tulio Valente da UFMG](https://engsoftmoderna.info/)
+- [Fowler](https://martinfowler.com/)
+- [Manifesto Ágil](https://agilemanifesto.org/iso/ptbr/manifesto.html)
+- [XP](https://martinfowler.com/bliki/ExtremeProgramming.html)
 ### Ágil
   - Manifesto
   - XP e Scrum
@@ -20,3 +30,5 @@ Recursos de Código trabalhado na Mentoria
   - Sprint
   - ...
 ### Qualidade de Software
+
+
