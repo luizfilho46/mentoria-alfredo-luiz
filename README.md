@@ -1,4 +1,4 @@
-# mentoria-alfredo-luiz
+# Mentoria Afredo / Luiz Filho
 Recursos de Código trabalhado na Mentoria
 
 ## Programação, Estrutura de Dados e Algoritmos
