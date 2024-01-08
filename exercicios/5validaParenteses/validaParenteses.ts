@@ -1,4 +1,4 @@
-const s = '](';
+const s = '((';
 isValid(s);
 
 function isValid(s: string): boolean {

@@ -12,8 +12,9 @@ let nums = [2, 11, 15, 7]
 let target = 9
 
 soma(nums, target)
-/* 
-solucao ideal
+
+ 
+/* solucao ideal */
 
 function name(nums, target) {
   let map = new Map()

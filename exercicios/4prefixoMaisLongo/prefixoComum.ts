@@ -1,8 +1,7 @@
 let palavras = ['flower', 'flow', 'flight'];
-longestCommonPrefix(palavras)
+longestCommonPrefix(palavras);
 
 function longestCommonPrefix(strs: string[]): string {
-  console.log(strs[0][0]);
   let prefixo = '';
   let menorPalavra = strs[0].length;
 
@@ -17,5 +16,6 @@ function longestCommonPrefix(strs: string[]): string {
       break;
     }
   }
+  console.log(prefixo);
   return prefixo;
 }
