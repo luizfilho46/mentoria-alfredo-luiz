@@ -1,0 +1,23 @@
+Dada uma string s, retorne o mais longo 
+palíndromo
+ 
+substring
+em s.
+
+ 
+
+Exemplo 1:
+
+Entrada: s = "babad"
+ Saída: "bab"
+ Explicação: "aba" também é uma resposta válida.
+Exemplo 2:
+
+Entrada: s = "cbbd"
+ Saída: "bb"
+ 
+
+Restrições:
+
+1 <= s.length <= 1000
+sconsistem apenas em dígitos e letras em inglês.
