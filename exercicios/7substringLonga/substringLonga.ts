@@ -1,19 +1,21 @@
+const palavra = 'banana';
+
+longestPalindrome(palavra);
 function longestPalindrome(s: string): string {
   if (s.length === 1) {
     return s;
   }
-  let palavraAlterada = '|' + s.split('').join() + '|';
-  palavraAlterada = palavraAlterada.replace(/,/g, '|');
-  palavraAlterada;
+   s = '|' + s.split('').join() + '|';
+  s = s.replace(/,/g, '|');
   let resultado = '';
 
-  for (let i = 1; i < palavraAlterada.length; i+=2) {
-    let tamanhoString = palavraAlterada.length;
-    if (!(resultado.length === palavraAlterada.length)) {
+  for (let i = 1; i < s.length; i += 2) {
+    let tamanhoString = s.length;
+    if (resultado.length<s.slice(i,tamanhoString).length) {
+      console.log(i)
       for (let j = tamanhoString; j > i; j--) {
-        if (compara(palavraAlterada, i, tamanhoString - 1)) {
-          let newStriing = palavraAlterada.slice(i, tamanhoString);
-          resultado = newStriing.length > resultado.length ? newStriing : resultado;
+        if (compara(s, i, tamanhoString - 1)) {
+          resultado = s.slice(i, tamanhoString).length > resultado.length ? s.slice(i, tamanhoString) : resultado;
           break;
         }
         tamanhoString--;

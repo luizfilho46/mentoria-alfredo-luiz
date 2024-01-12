@@ -1,22 +1,19 @@
-var palavra = 'babad';
-// const palavra = 'cbd';
+var palavra = 'banana';
 longestPalindrome(palavra);
 function longestPalindrome(s) {
     if (s.length === 1) {
         return s;
     }
-    var palavraAlterada = '|' + s.split('').join() + '|';
-    palavraAlterada = palavraAlterada.replace(/,/g, '|');
-    palavraAlterada;
+    s = '|' + s.split('').join() + '|';
+    s = s.replace(/,/g, '|');
     var resultado = '';
-    for (var i = 1; i < palavraAlterada.length; i += 2) {
-        var tamanhoString = palavraAlterada.length;
-        if (!(resultado.length === palavraAlterada.length)) {
+    for (var i = 1; i < s.length; i += 2) {
+        var tamanhoString = s.length;
+        if (resultado.length < s.slice(i, tamanhoString).length) {
+            console.log(i);
             for (var j = tamanhoString; j > i; j--) {
-                if (compara(palavraAlterada, i, tamanhoString - 1)) {
-                    // console.log(palavraAlterada.slice(i, j));
-                    var newStriing = palavraAlterada.slice(i, tamanhoString);
-                    resultado = newStriing.length > resultado.length ? newStriing : resultado;
+                if (compara(s, i, tamanhoString - 1)) {
+                    resultado = s.slice(i, tamanhoString).length > resultado.length ? s.slice(i, tamanhoString) : resultado;
                     break;
                 }
                 tamanhoString--;
@@ -25,12 +22,11 @@ function longestPalindrome(s) {
         else
             break;
     }
-    console.log(resultado.replace(/\|/g, ''));
     return resultado.replace(/\|/g, '');
 }
 function compara(strin, inicio, fim) {
     if (strin[inicio] === strin[fim] && inicio < fim) {
-        return compara(strin, inicio + 2, fim - 2);
+        return compara(strin, inicio + 1, fim - 1);
     }
     else if (strin[inicio] === strin[fim] && inicio === fim) {
         return true;

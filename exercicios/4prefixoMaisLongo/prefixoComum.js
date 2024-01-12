@@ -1,25 +1,22 @@
 var palavras = ['flower', 'flow', 'flight'];
-longestCommonPrefix(palavras);
-function longestCommonPrefix(strs) {
-    var prefixo = '';
-    var menorPalavra = strs[0].length;
-    strs.forEach(function (item) {
-        if (item.length < menorPalavra)
-            menorPalavra = item.length;
-    });
-    var _loop_1 = function (i) {
-        if (strs.every(function (element) { return element[i] === strs[0][i]; })) {
-            prefixo += strs[0][i];
-        }
-        else {
-            return "break";
-        }
-    };
-    for (var i = 0; i < menorPalavra; i++) {
-        var state_1 = _loop_1(i);
-        if (state_1 === "break")
-            break;
-    }
-    console.log(prefixo);
-    return prefixo;
-}
+// let palavras = ['fl'];
+/*
+1. achar a menor palavra
+2. Pegar a primeira letra e comparar com as demais palavras
+3. Se for igual, salvar a letra em let prefixo e comparar a proxima
+4. Se for diferente retorar o valor o prefixo montado.
+*/
+palavras.sort();
+console.log(palavras[0]);
+var prefixo = '';
+var acumulador = palavras[0].length;
+var menorPalavra = palavras[0].length;
+palavras.forEach(function (item) {
+    if (item.length < menorPalavra)
+        menorPalavra = item.length;
+});
+console.log(palavras);
+var teste = palavras.every(function (e) {
+    return (e[0] === 'f');
+});
+console.log(teste);

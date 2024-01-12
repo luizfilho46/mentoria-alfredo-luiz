@@ -4,8 +4,6 @@ palíndromo
 substring
 em s.
 
- 
-
 Exemplo 1:
 
 Entrada: s = "babad"
