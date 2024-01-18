@@ -1,0 +1,28 @@
+1207. Número Único de Ocorrências
+Fácil
+Tópicos
+Empresas
+Dica
+Dado um array de inteiros arr, retorne true se o número de ocorrências de cada valor no array for único ou false não .
+
+ 
+
+Exemplo 1:
+
+Entrada: arr = [1,2,2,1,1,3]
+ Saída: true
+ Explicação:  O valor 1 possui 3 ocorrências, 2 possui 2 e 3 possui 1. Não existem dois valores com o mesmo número de ocorrências.
+Exemplo 2:
+
+Entrada: arr = [1,2]
+ Saída: falso
+Exemplo 3:
+
+Entrada: arr = [-3,0,1,-3,1,1,1,-3,10,0]
+ Saída: verdadeiro
+ 
+
+Restrições:
+
+1 <= arr.length <= 1000
+-1000 <= arr[i] <= 1000
