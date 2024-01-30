@@ -1,0 +1,20 @@
+{
+  "name": "mentoria-alfredo-luiz",
+  "version": "1.0.0",
+  "description": "Recursos de Código trabalhado na Mentoria",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "tsc": "^2.0.4"
+  }
+}
