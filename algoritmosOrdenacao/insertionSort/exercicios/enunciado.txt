@@ -1,7 +1,0 @@
-Dado o valor headde uma lista vinculada individualmente, classifique a lista usando a classificação por inserção e retorne o cabeçalho da lista classificada .
-
-As etapas do algoritmo de classificação por inserção :
-
-A classificação por inserção itera, consumindo um elemento de entrada a cada repetição e aumentando uma lista de saída classificada.
-A cada iteração, a ordenação por inserção remove um elemento dos dados de entrada, encontra o local ao qual pertence na lista ordenada e o insere lá.
-Ele se repete até que nenhum elemento de entrada permaneça.
