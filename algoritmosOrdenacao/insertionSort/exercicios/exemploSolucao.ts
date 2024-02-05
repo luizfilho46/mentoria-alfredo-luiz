@@ -1,4 +1,4 @@
-function insertionSortLists(head: ListNode | null): ListNode | null {
+/* function insertionSortLists(head: ListNode | null): ListNode | null {
   if (!head || !head.next) return head;
 
   const result = new ListNode(0);
@@ -27,4 +27,4 @@ function insertionSortLists(head: ListNode | null): ListNode | null {
   }
 
   return result.next;
-}
+} */
