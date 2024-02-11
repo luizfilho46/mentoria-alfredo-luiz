@@ -1,5 +1,6 @@
 import numeros from '../numerosAleatorios';
 
+//Complexidade no melhor/pior O(n²)
 function selectionSort(arr: Array<number>): Array<number> {
   let menor: number;
   for (let i = 0; i < arr.length - 1; i++) {
