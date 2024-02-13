@@ -1,3 +1,4 @@
+import numeros from "../numerosAleatorios";
 function qSort(vetor: Array<number>, inicio: number, fim: number) {
   if (inicio < fim) {
     let pivot = particionar(vetor, inicio, fim);
@@ -16,5 +17,5 @@ function qSort(vetor: Array<number>, inicio: number, fim: number) {
     return i + 1;
   }
 }
-qSort(vetor, 0, vetor.length - 1);
-console.log(vetor);
+qSort(numeros, 0, numeros.length - 1);
+console.log(numeros);
