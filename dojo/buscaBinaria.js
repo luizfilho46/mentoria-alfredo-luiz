@@ -14,8 +14,6 @@ function buscaBinaria(arr, numero) {
   while (inicio <= fim) {
     let meio = Math.floor((inicio + fim) / 2);
     if (arr[meio] === numero) {
-      encontrado = true;
-      console.log(meio);
       return meio;
     } else if (arr[meio] > numero) {
       fim = meio - 1;
@@ -24,9 +22,7 @@ function buscaBinaria(arr, numero) {
     }
   }
   console.log(-1);
+  return -1;
 }
 
-buscaBinaria(primeiroArray, 3);
-buscaBinaria(segundoArray, 60);
-buscaBinaria(terceiroArray, 6);
-buscaBinaria(terceiroArray, 10);
+console.log(buscaBinaria(terceiroArray, 0));
