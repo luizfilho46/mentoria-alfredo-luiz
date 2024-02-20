@@ -1,5 +1,6 @@
-teste
-*.js
 node_modules
+teste
 gerarArray
 livro_*
+exercicios/*/*.js
+algoritmosOrdenacao/**/*.js
