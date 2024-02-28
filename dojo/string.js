@@ -15,9 +15,7 @@ function contaLetras(params) {
   let numeroLetras = 0;
   let i = 0;
   while (params[i] != undefined) {
-    if (params[i] != ' ') {
-      numeroLetras++;
-    }
+    if (params[i] != ' ') numeroLetras++;
     i++;
   }
   console.log(`Numero de letras: ${numeroLetras}`);
@@ -26,9 +24,7 @@ function contaPalavras(params) {
   let contaPalavras = 0;
   let i = 0;
   while (params[i] != undefined) {
-    if (params[i] === ' ') {
-      contaPalavras++;
-    }
+    if (params[i] === ' ') contaPalavras++;
     i++;
   }
   contaPalavras += 1;
@@ -43,7 +39,6 @@ function toUppercase(param) {
       novaPalavra += letra;
     } else if (param.charCodeAt(i) >= 224 && param.charCodeAt(i) <= 297) {
       const letra = String.fromCharCode(param[i].charCodeAt() - 32);
-      letra;
       novaPalavra += letra;
     } else {
       novaPalavra += param[i];
@@ -56,20 +51,18 @@ function replace(params, letra) {
   let palavraFinal = '';
   let i = 0;
   while (params[i] !== undefined) {
-    if (params[i] === letra) {
-      palavraFinal += '*';
-    } else palavraFinal += params[i];
+    params[i] === letra ? (palavraFinal += '*') : (palavraFinal += params[i]);
     i++;
   }
   console.log(palavraFinal);
 }
-console.log("\nPrimeira Frase\n");
+console.log('\nPrimeira Frase\n');
 contaLetras(primeiraFrase);
 contaPalavras(primeiraFrase);
 toUppercase(primeiraFrase);
 replace(primeiraFrase, 'e');
 contaLetras(primeiraFrase);
-console.log("\nSegunda Frase\n");
+console.log('\nSegunda Frase\n');
 
 contaLetras(segundaFrase);
 contaPalavras(segundaFrase);
