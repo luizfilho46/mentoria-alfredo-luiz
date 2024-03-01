@@ -1,0 +1,23 @@
+Dado um inteiro assinado de 32 bits x, retorne xcom seus dígitos invertidos . Se a reversão xfizer com que o valor saia do intervalo inteiro assinado de 32 bits , retorne .[-231, 231 - 1]0
+
+Suponha que o ambiente não permita armazenar inteiros de 64 bits (assinados ou não).
+
+ 
+
+Exemplo 1:
+
+Entrada: x = 123
+ Saída: 321
+Exemplo 2:
+
+Entrada: x = -123
+ Saída: -321
+Exemplo 3:
+
+Entrada: x = 120
+ Saída: 21
+ 
+
+Restrições:
+
+-231 <= x <= 231 - 1

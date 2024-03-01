@@ -1,21 +1,24 @@
-import numeros from "../numerosAleatorios";
-function qSort(vetor: Array<number>, inicio: number, fim: number) {
+const numer = [10, 5, 9, 8, 15, 20, -1, 50, 2, 3];
+
+function quickSot(vetor:Array<number>, inicio:number = 0, fim:number = vetor.length - 1) {
   if (inicio < fim) {
-    let pivot = particionar(vetor, inicio, fim);
-    qSort(vetor, inicio, pivot - 1);
-    qSort(vetor, pivot + 1, fim);
+    let pivo = particiona(vetor, inicio, fim);
+    quickSot(vetor, inicio, pivo - 1);
+    quickSot(vetor, pivo + 1, fim);
   }
-  function particionar(vetor: Array<number>, inicio: number, fim: number): number {
-    let i = inicio - 1;
-    for (let j = inicio; j < fim; j++) {
-      if (vetor[j] <= vetor[fim]) {
-        i = i + 1;
-        [vetor[i], vetor[j]] = [vetor[j], vetor[i]];
+
+  function particiona(vetor:Array<number>, inicio:number, fim:number) {
+    let pivo = vetor[fim];
+    let indiceUltimaAltercao = inicio - 1;
+    for (let i = inicio; i < fim; i++) {
+      if (vetor[i] < vetor[fim]) {
+        indiceUltimaAltercao++;
+        [vetor[indiceUltimaAltercao], vetor[i]] = [vetor[i], vetor[indiceUltimaAltercao]];
       }
     }
-    [vetor[i + 1], vetor[fim]] = [vetor[fim], vetor[i + 1]];
-    return i + 1;
+    [vetor[indiceUltimaAltercao + 1], vetor[fim]] = [vetor[fim], vetor[indiceUltimaAltercao + 1]];
+    return indiceUltimaAltercao + 1;
   }
 }
-qSort(numeros, 0, numeros.length - 1);
-console.log(numeros);
+quickSot(numer);
+console.log(numer);
