@@ -121,6 +121,7 @@ class Lista {
 
 const lista = new Lista();
 
+export default Lista;
 lista.push(15);
 lista.push(25);
 // console.log(JSON.stringify(lista, null, 2));
