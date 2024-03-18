@@ -5,3 +5,4 @@ livro_*
 exercicios/*/*.js
 algoritmosOrdenacao/**/*.js
 *teste*
+package-lock.json
