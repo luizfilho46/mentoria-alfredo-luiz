@@ -8,7 +8,6 @@ function quickSot(vetor:Array<number>, inicio:number = 0, fim:number = vetor.len
   }
 
   function particiona(vetor:Array<number>, inicio:number, fim:number) {
-    let pivo = vetor[fim];
     let indiceUltimaAltercao = inicio - 1;
     for (let i = inicio; i < fim; i++) {
       if (vetor[i] < vetor[fim]) {

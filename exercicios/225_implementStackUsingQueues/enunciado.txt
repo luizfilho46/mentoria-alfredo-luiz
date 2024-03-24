@@ -1,0 +1,43 @@
+225. Implementar pilha usando filas
+Fácil
+Tópicos
+Empresas
+Implemente uma pilha LIFO (último a entrar, primeiro a sair) usando apenas duas filas. A pilha implementada deve suportar todas as funções de uma pilha normal ( ,,, pushe ) .toppopempty
+
+Implemente a MyStackclasse:
+
+void push(int x)Empurra o elemento x para o topo da pilha.
+int pop()Remove o elemento do topo da pilha e o retorna.
+int top()Retorna o elemento no topo da pilha.
+boolean empty()Retorna truese a pilha estiver vazia, falsecaso contrário.
+Notas:
+
+Você deve usar apenas operações padrão de uma fila, o que significa que apenas as operações , e push to backsão peek/pop from frontválidas .sizeis empty
+Dependendo do seu idioma, a fila pode não ter suporte nativo. Você pode simular uma fila usando uma lista ou deque (fila dupla), desde que use apenas as operações padrão de uma fila.
+ 
+
+Exemplo 1:
+
+Entrada 
+["MyStack", "push", "push", "top", "pop", "vazio"] 
+[[], [1], [2], [], [], []] Saída 
+[nulo , null, null, 2, 2, false] Explicação 
+MyStack myStack = new MyStack(); 
+meuStack.push(1); 
+meuStack.push(2); 
+meuStack.top(); // return 2 
+myStack.pop(); // return 2 
+myStack.empty(); // retorna falso
+
+
+
+ 
+
+Restrições:
+
+1 <= x <= 9
+No máximo 100as chamadas serão feitas para push, pop, tope empty.
+Todas as chamadas para pope topsão válidas.
+ 
+
+Acompanhamento: Você pode implementar a pilha usando apenas uma fila?

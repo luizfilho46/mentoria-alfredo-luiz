@@ -7,9 +7,9 @@ function buscaBinariaRecursiva(lista, numero, inicio = 0, fim = lista.length - 1
       console.log(`o ${numero} esta no indice ${meio}`);
       return meio;
     } else if (lista[meio] > numero) {
-      buscaBinariaRecursiva(lista, numero, inicio, meio - 1);
+      return buscaBinariaRecursiva(lista, numero, inicio, meio - 1);
     } else if (lista[meio] < numero) {
-      buscaBinariaRecursiva(lista, numero, meio + 1, fim);
+      return buscaBinariaRecursiva(lista, numero, meio + 1, fim);
     }
   } else {
     console.log(`Não encontrado`);

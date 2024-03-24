@@ -1,0 +1,12 @@
+const bordas = [
+  [1, 2],
+  [2, 3],
+  [4, 2],
+];
+function findCenter(edges: number[][]): number {
+  if (edges[0][0] === edges[1][0] || edges[0][0] === edges[1][1]) {
+    return edges[0][0];
+  } else return edges[0][1];
+}
+
+console.log(findCenter(bordas))

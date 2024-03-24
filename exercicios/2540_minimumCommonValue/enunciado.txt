@@ -1,0 +1,23 @@
+Dados dois arrays inteiros nums1e nums2, classificados em ordem não decrescente, retorne o número inteiro mínimo comum a ambos os arrays . Se não houver um número inteiro comum entre nums1e nums2, retorne -1.
+
+Observe que um número inteiro é considerado comum a nums1e nums2se ambas as matrizes tiverem pelo menos uma ocorrência desse número inteiro.
+
+ 
+
+Exemplo 1:
+
+Entrada: nums1 = [1,2,3], nums2 = [2,4]
+ Saída: 2
+ Explicação: O menor elemento comum a ambas as matrizes é 2, então retornamos 2.
+Exemplo 2:
+
+Entrada: nums1 = [1,2,3,6], nums2 = [2,3,4,5]
+ Saída: 2
+ Explicação: Existem dois elementos comuns na matriz 2 e 3, dos quais 2 é o menor, então 2 é retornado.
+ 
+
+Restrições:
+
+1 <= nums1.length, nums2.length <= 105
+1 <= nums1[i], nums2[j] <= 109
+Ambos nums1e nums2são classificados em ordem não decrescente .
