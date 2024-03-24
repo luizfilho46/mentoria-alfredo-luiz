@@ -16,46 +16,30 @@ function criarLista(numero: number | null, lista: ListNodes | null = null): List
     return lista;
   } else return (lista = new ListNodes(numero));
 }
+const lista1 = criarLista(342);
+const lista2 = criarLista(665);
+console.log(addTwoNumbers(lista1, lista2));
+
 function addTwoNumbers(l1: ListNodes | null, l2: ListNodes | null): ListNodes | null {
-  let resultado: ListNodes | null = null;
+  let resultado: ListNodes | null = new ListNodes();
+  let current: ListNodes | null = resultado;
   let sobe = 0;
-  let current: ListNodes | null = null;
 
-  if (l1 && l2) {
-    let soma = l1.val + l2.val;
-    resultado = new ListNodes(Math.floor(soma % 10));
-    l1 = l1.next;
-    l2 = l2.next;
-    if (soma >= 10) {
-      sobe = Math.floor(soma / 10);
-    } else resultado = new ListNodes(Math.floor(soma % 10));
-
-    current = resultado;
-
-    while (l1 || l2) {
-      soma = 0;
-      if (l1) {
-        soma += l1.val;
-        l1 = l1.next;
-      }
-      if (l2) {
-        soma += l2.val;
-        l2 = l2.next;
-      }
-      soma += sobe;
-      let nv = new ListNodes(Math.floor(soma % 10));
-      current.next = nv;
-      current = current?.next;
-
-      if (soma >= 10) {
-        sobe = Math.floor(soma / 10);
-      } else sobe = 0;
+  while (l1 || l2 || sobe > 0) {
+    let soma = 0;
+    if (l1) {
+      soma += l1.val;
+      l1 = l1.next;
     }
-    if (sobe > 0) {
-      let nv = new ListNodes(Math.floor(sobe));
-      current.next = nv;
+    if (l2) {
+      soma += l2.val;
+      l2 = l2.next;
     }
+    soma += sobe;
+    current.next = new ListNodes(Math.floor(soma % 10));
+    current = current.next;
+
+    sobe = Math.floor(soma / 10);
   }
-
-  return resultado;
+  return resultado.next;
 }
