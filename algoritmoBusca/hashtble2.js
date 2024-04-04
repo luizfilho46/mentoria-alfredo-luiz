@@ -5,9 +5,9 @@ class HasTable {
   }
 
   addValue(value) {
-    let lengthTable = this.hash.length - 1;
+    let lengthTable = this.hash.length;
     let cycles = value % lengthTable;
-    while (cycles <= lengthTable && this.hash[cycles] !== undefined && this.hash[cycles] !== null) {
+    while (cycles <= lengthTable - 1 && this.hash[cycles] !== undefined && this.hash[cycles] !== null) {
       cycles++;
     }
     if (cycles < lengthTable) {
@@ -15,9 +15,9 @@ class HasTable {
     }
   }
   removeElement(value) {
-    let lengthTable = this.hash.length - 1;
+    let lengthTable = this.hash.length;
     let cycles = value % lengthTable;
-    while (cycles <= lengthTable && this.hash[cycles] !== undefined && this.hash[cycles] !== null) {
+    while (cycles <= lengthTable - 1 && this.hash[cycles] !== value&& this.hash[cycles] !== undefined ) {
       cycles++;
     }
     if (this.hash[cycles] === value) {
@@ -31,5 +31,6 @@ hash.addValue(2003);
 hash.addValue(0);
 hash.addValue(2003);
 hash.addValue(10);
-
+hash.removeElement(2003);
+hash.removeElement(2003);
 console.log(hash);
