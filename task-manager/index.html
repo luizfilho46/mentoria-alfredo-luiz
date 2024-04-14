@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task Manager</title>
+    <link rel="stylesheet" href="styles/main.css" />
+</head>
+
+<body>
+    <div class="root">
+        <header>
+            <h1>Gerenciamento deTtarefas</h1>
+            <section>
+                <fieldset>
+                    <legend>Adicionar Tarefa</legend>
+                    <label for="addtaskinput">Nova Tarefa:</label>
+                    <input type="text" id="addtaskinput" />
+                    <button id="addtaskbutton">Salvar</button>
+                </fieldset>
+            </section>
+        </header>
+        <main>
+            <h2>Lista de Tarefas</h2>
+            <div id="tasklist"></div>
+        </main>
+    </div>
+    <div id="error">
+    </div>
+    <script src="scripts/main.js"></script>
+</body>
+
+</html>
