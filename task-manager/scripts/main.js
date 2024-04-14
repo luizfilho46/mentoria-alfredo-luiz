@@ -1,5 +1,7 @@
-const apiUrl = 'http://localhost:3001/tasks';
+const apiUrl = 'https://mocki.io/v1/890c64c6-ce10-458c-b1b7-afefe475bc05';
 const addTaskInput = document.getElementById("addtaskinput");
+const startDateInput = document.getElementById("startdate");
+const endDateInput = document.getElementById("enddate");
 const addTaskButton = document.getElementById("addtaskbutton");
 const error = document.getElementById("error");
 const taskPane = document.getElementById("tasklist");
@@ -8,23 +10,29 @@ addTaskButton.addEventListener("click", onAddTaskButtonClick);
 
 async function onAddTaskButtonClick() {
   const task = addTaskInput.value.trim();
-  if (task.length === 0) {
-    showDialog("Campo Vazio. Por favor, preencha o campo de tarefa");
+  const startDate = startDateInput.value;
+  const endDate = endDateInput.value;
+
+  if (task.length === 0 || startDate.length === 0 || endDate.length === 0) {
+    showDialog("Por favor, preencha todos os campos");
     return;
   }
+
   try {
-    const response = await salvarTarefaAPI(task);
+    const response = await salvarTarefaAPI(task, startDate, endDate);
     if (response) {
-      const savedTask = response.descricao;
+      const savedTask = response;
       addTaskToUI(savedTask);
     } else {
       showDialog("Erro ao salvar a tarefa");
     }
   } catch (error) {
-    console.error('Erro ao salvar tarefa:', error);
-    showDialog("Erro ao salvar a tarefa");
+    showDialog(`Erro ao salvar a tarefa ${error.message}`);
   }
+
   addTaskInput.value = "";
+  startDateInput.value = "";
+  endDateInput.value = "";
 }
 
 function addTaskToUI(task) {
@@ -38,27 +46,49 @@ function createTaskElement(task) {
   const editTask = createButton("Editar");
   const deleteTask = createButton("Apagar");
 
+  const startDateLabel = document.createElement("label");
+  const startDateInput = document.createElement("input");
+  const endDateLabel = document.createElement("label");
+  const endDateInput = document.createElement("input");
+
   taskItem.className = "taskitem";
+  taskItem.setAttribute("data-task-id", task.id);
   taskText.className = "tasktext";
   editTask.className = "edittask";
   deleteTask.className = "deletetask";
+  startDateLabel.textContent = "Início: ";
+  endDateLabel.textContent = "Término: ";
 
   taskText.textContent = task.descricao ?? "Erro ao criar a tarefa!";
+  startDateInput.value = task.dataInicio;
+  endDateInput.value = task.dataFim;
+
+  startDateInput.setAttribute("readonly", "");
+  endDateInput.setAttribute("readonly", "");
 
   taskItem.appendChild(taskText);
+  taskItem.appendChild(startDateLabel);
+  taskItem.appendChild(startDateInput);
+  taskItem.appendChild(document.createElement("br"));
+  taskItem.appendChild(endDateLabel);
+  taskItem.appendChild(endDateInput);
   taskItem.appendChild(editTask);
   taskItem.appendChild(deleteTask);
 
   deleteTask.addEventListener("click", async () => {
-    await removerTarefaAPI(task.id)
+    await removerTarefaAPI(task.id);
     taskPane.removeChild(taskItem);
   });
 
   editTask.addEventListener("click", () => {
-    editTaskText(taskText);
+    editTaskText(taskText, startDateInput, endDateInput, task.id);
   });
-
   return taskItem;
+}
+
+function formatDate(dateString) {
+  const [year, month, day] = dateString.split("-");
+  return `${year}-${month.padStart(2, "0")}-${day.padStart(2, "0")}`;
 }
 
 function createButton(text) {
@@ -67,23 +97,66 @@ function createButton(text) {
   return button;
 }
 
-function editTaskText(taskText) {
-  const inputField = document.createElement("input");
-  inputField.value = taskText.textContent;
-  taskText.replaceWith(inputField);
+async function editTaskApi(taskId, descricao, dataInicio, dataFim) {
+  const response = await fetch(apiUrl + `/${taskId}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ descricao, dataInicio, dataFim }),
+  });
+  if (!response.ok) {
+    showDialog('Erro ao editar tarefa');
+    return null;
+  }
+  const data = await response.json();
+  return data;
+}
 
-  inputField.focus();
+function editTaskText(taskText, startDateInput, endDateInput, taskId) {
+  const descriptionInput = document.createElement("input");
+  descriptionInput.value = taskText.textContent;
 
-  inputField.addEventListener("blur", () => {
-    taskText.textContent = inputField.value;
-    inputField.replaceWith(taskText);
+  taskText.replaceWith(descriptionInput);
+  startDateInput.removeAttribute("readonly");
+  endDateInput.removeAttribute("readonly");
+
+  descriptionInput.focus();
+
+  descriptionInput.addEventListener("blur", () => {
+    taskText.textContent = descriptionInput.value;
+    descriptionInput.replaceWith(taskText);
   });
 
-  inputField.addEventListener("keypress", (e) => {
+  descriptionInput.addEventListener("keypress", (e) => {
     if (e.key === "Enter") {
-      taskText.textContent = inputField.value;
-      inputField.replaceWith(taskText);
+      taskText.textContent = descriptionInput.value;
+      descriptionInput.replaceWith(taskText);
     }
+  });
+
+  [startDateInput, endDateInput].forEach(input => {
+    input.addEventListener("blur", async () => {
+      const formattedStartDate = formatDate(startDateInput.value);
+      const formattedEndDate = formatDate(endDateInput.value);
+      startDateInput.value = formattedStartDate;
+      endDateInput.value = formattedEndDate;
+      startDateInput.setAttribute("readonly", "");
+      endDateInput.setAttribute("readonly", "");
+      await editTaskApi(taskId, descriptionInput.value, formattedStartDate, formattedEndDate);
+    });
+
+    input.addEventListener("keypress", async (e) => {
+      if (e.key === "Enter") {
+        const formattedStartDate = formatDate(startDateInput.value);
+        const formattedEndDate = formatDate(endDateInput.value);
+        startDateInput.value = formattedStartDate;
+        endDateInput.value = formattedEndDate;
+        startDateInput.setAttribute("readonly", "");
+        endDateInput.setAttribute("readonly", "");
+        await editTaskApi(taskId, descriptionInput.value, formattedStartDate, formattedEndDate);
+      }
+    });
   });
 }
 
@@ -107,27 +180,27 @@ async function buscarTarefas() {
     return [];
   }
   const data = await response.json();
-  return data.results;
+  return data;
 }
 
-async function salvarTarefaAPI(tarefa) {
+async function salvarTarefaAPI(descricao, dataInicio, dataFim) {
   const response = await fetch(apiUrl, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ descricao: tarefa, data: new Date() }),
+    body: JSON.stringify({ descricao, dataInicio, dataFim }),
   });
   if (!response.ok) {
     showDialog('Erro ao salvar tarefa');
-    return null;
+    return null
   }
   const data = await response.json();
   return data;
 }
 
-async function removerTarefaAPI(tarefaId) {
-  const response = await fetch(apiUrl + `/${tarefaId}`, {
+async function removerTarefaAPI(taskId) {
+  const response = await fetch(apiUrl + `/${taskId}`, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
@@ -146,6 +219,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     const tasks = await buscarTarefas();
     tasks.forEach(task => addTaskToUI(task));
   } catch (error) {
-    showDialog("Erro ao buscar as tarefas" + error.message);
+    showDialog(`Erro ao buscar as tarefas ${error.message}`);
   }
 });

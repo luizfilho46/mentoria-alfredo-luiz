@@ -1,184 +1,152 @@
 button,
 input {
-    all: unset;
-    background: none;
-    color: inherit;
-    border: none;
-    font: inherit;
-    outline: none;
+  all: unset;
+  background: none;
+  color: inherit;
+  border: none;
+  font: inherit;
+  outline: none;
 }
 
 button {
-    cursor: pointer;
-    padding: var(--padding);
-    border-radius: var(--border-radius);
-    background-color: var(--tk-control);
-    text-align: center;
+  cursor: pointer;
+  padding: var(--padding);
+  border-radius: var(--border-radius);
+  background-color: var(--tk-control);
+  text-align: center;
 }
 
-button:hover {
-    border: 0.2rem solid var(--tk-hover);
-}
-
+button:hover,
 button:active {
-    border: 0.2rem solid var(--tk-active);
+  border: 0.2rem solid var(--tk-hover);
 }
 
 input {
-    padding: var(--padding);
-    border-radius: var(--border-radius);
-    background-color: var(--tk-color);
+  padding: var(--padding);
+  border-radius: var(--border-radius);
+  background-color: var(--tk-color);
 }
 
-input:hover {
-    border: 0.2rem solid var(--tk-hover);
-}
-
+input:hover,
 input:focus,
 input:active {
-    border: 0.2rem solid var(--tk-active);
+  border: 0.2rem solid var(--tk-hover);
 }
 
 .taskitem {
-    display: grid;
-    gap: 1rem;
-    grid-template-columns: 1fr 0.2fr 0.2fr;
-    padding: var(--padding);
-    border-radius: var(--border-radius);
-    background-color: var(--tk-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--padding);
+  border-radius: var(--border-radius);
+  background-color: var(--tk-color);
 }
 
 .tasktext {
-    padding-left: var(--padding);
-    display: flex;
-    align-items: center;
-    font-weight: 600;
+  flex: 1;
+  padding-left: var(--padding);
+  font-weight: 600;
+}
+
+.taskdates {
+  margin-left: auto;
+  margin-right: var(--padding);
 }
 
 #error {
-    display: grid;
-    gap: var(--grid-gap);
-    position: absolute;
-    top: 40vh;
-    bottom: auto;
+  display: grid;
+  gap: var(--grid-gap);
+  position: absolute;
+  top: 40vh;
+  bottom: auto;
 }
 
 .warning {
-    width: fit-content;
-    padding: 0.5rem;
-    border-radius: var(--border-radius);
-    background-color: var(--tk-color);
-    text-align: center;
-    transition: 0.5s;
+  width: fit-content;
+  padding: 0.5rem;
+  border-radius: var(--border-radius);
+  background-color: var(--tk-color);
+  text-align: center;
+  transition: 0.5s;
 }
 
-.warning:hover {
-    border: 0.2rem solid var(--tk-hover);
-}
-
-.warning>span {
-    float: left;
-    padding: 0.1rem;
-}
-
-.warning>div {
-    width: 20px;
-    height: 20px;
-    margin: 0.1rem 0 0 0.3rem;
-    padding: 0.1rem;
-    cursor: pointer;
-    border-radius: 50%;
-    background-color: var(--tk-control);
-    border: 0.2rem solid var(--tk-color);
-}
-
-.warning>div:hover {
-    border: 0.2rem solid var(--alert);
-    background-color: var(--alert-bg);
-}
-
-.warning>div:active {
-    border: 0.2rem solid var(--warning);
+.warning:hover>div {
+  border: 0.2rem solid var(--alert);
+  background-color: var(--alert-bg);
 }
 
 @media screen and (min-width: 480px) {
-    .error_pane {
-        position: absolute;
-        right: auto;
-        left: 0.5vw;
-        top: auto;
-        bottom: 1vh;
-    }
+  .error_pane {
+    position: absolute;
+    right: auto;
+    left: 0.5vw;
+    top: auto;
+    bottom: 1vh;
+  }
 }
 
 body {
-    display: grid;
-    place-items: center;
-}
-
-html {
-    color: var(--text-color);
-    font-family: Consolas, Monaco, monospace;
-    background-color: var(--bg);
+  display: grid;
+  place-items: center;
+  color: var(--text-color);
+  font-family: Consolas, Monaco, monospace;
+  background-color: var(--bg);
 }
 
 ::-webkit-scrollbar {
-    width: 8px;
-    transition: 0.4s;
+  width: 8px;
+  transition: 0.4s;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: var(--tk-color);
-    border-radius: 2px;
+  background: var(--tk-color);
+  border-radius: 2px;
 }
 
 ::-webkit-scrollbar-thumb:hover,
 ::-webkit-scrollbar-thumb:active {
-    background: var(--tk-control);
-    border-radius: 2px;
+  background: var(--tk-control);
+  border-radius: 2px;
 }
 
 .root {
-    min-width: 60%;
-    max-width: 99%;
+  min-width: 60%;
+  max-width: 99%;
 }
 
 section {
-    display: grid;
-    gap: var(--grid-gap);
-    grid-template-columns: 1fr auto;
+  display: grid;
+  gap: var(--grid-gap);
+  grid-template-columns: 1fr auto;
 }
 
 #tasklist {
-    display: grid;
-    gap: var(--grid-gap);
+  display: grid;
+  gap: var(--grid-gap);
+  overflow-y: auto;
 }
 
-#closeButton {
-    cursor: pointer;
-    background-color: #d3b1b1;
-    color: #fff;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    text-align: center;
-    line-height: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+footer {
+  width: 100%;
+  background-color: #95c1a8;
+  padding: 20px;
+  text-align: center;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
 
 :root {
-    --border-radius: 0.5rem;
-    --grid-gap: 1vw;
-    --padding: var(--grid-gap);
-    --bg: rgb(40, 44, 52);
-    --alert: rgb(204, 153, 153);
-    --warning: rgb(222, 234, 62);
-    --alert-bg: rgb(178, 0, 0);
-    --text-color: rgb(229, 229, 229);
-    --tk-color: rgb(69, 76, 90);
-    --tk-control: rgb(29, 32, 39);
-    --tk-hover: hsla(190, 100%, 42%, 1);
-    --tk-active: hsla(201, 100%, 36%, 1);
+  --border-radius: 0.5rem;
+  --grid-gap: 1vw;
+  --padding: var(--grid-gap);
+  --bg: rgb(40, 44, 52);
+  --alert: rgb(204, 153, 153);
+  --warning: rgb(222, 234, 62);
+  --alert-bg: rgb(178, 0, 0);
+  --text-color: rgb(229, 229, 229);
+  --tk-color: rgb(69, 76, 90);
+  --tk-control: rgb(29, 32, 39);
+  --tk-hover: hsla(190, 100%, 42%, 1);
+  --tk-active: hsla(201, 100%, 36%, 1);
 }
