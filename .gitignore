@@ -6,3 +6,4 @@ exercicios/*/*.js
 algoritmosOrdenacao/**/*.js
 *teste*
 package-lock.json
+.env
