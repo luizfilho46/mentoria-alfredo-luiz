@@ -1,7 +1,8 @@
 const hashTable = new Array(23);
 
 function restoDivisao(element) {
-  return (indice = element % 23);
+  const indice = element % 23;
+  return indice;
 }
 
 function adicionar(element) {
