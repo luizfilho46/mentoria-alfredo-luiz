@@ -1,13 +1,12 @@
-// const apiUrl = 'https://mocki.io/v1/890c64c6-ce10-458c-b1b7-afefe475bc05';
-const apiUrl = 'http://localhost:3000/tasks';
-const addTaskInput = document.getElementById('addtaskinput');
-const startDateInput = document.getElementById('startdate');
-const endDateInput = document.getElementById('enddate');
-const addTaskButton = document.getElementById('addtaskbutton');
-const error = document.getElementById('error');
-const taskPane = document.getElementById('tasklist');
+const apiUrl = 'https://mocki.io/v1/890c64c6-ce10-458c-b1b7-afefe475bc05';
+const addTaskInput = document.getElementById("addtaskinput");
+const startDateInput = document.getElementById("startdate");
+const endDateInput = document.getElementById("enddate");
+const addTaskButton = document.getElementById("addtaskbutton");
+const error = document.getElementById("error");
+const taskPane = document.getElementById("tasklist");
 
-addTaskButton.addEventListener('click', onAddTaskButtonClick);
+addTaskButton.addEventListener("click", onAddTaskButtonClick);
 
 async function onAddTaskButtonClick() {
   const task = addTaskInput.value.trim();
@@ -15,7 +14,7 @@ async function onAddTaskButtonClick() {
   const endDate = endDateInput.value;
 
   if (task.length === 0 || startDate.length === 0 || endDate.length === 0) {
-    showDialog('Por favor, preencha todos os campos');
+    showDialog("Por favor, preencha todos os campos");
     return;
   }
 
@@ -24,16 +23,16 @@ async function onAddTaskButtonClick() {
     if (response) {
       const savedTask = response;
       addTaskToUI(savedTask);
-    } /* else {
-      showDialog('Erro ao salvar a tarefa');
-    } */
+    } else {
+      showDialog("Erro ao salvar a tarefa");
+    }
   } catch (error) {
     showDialog(`Erro ao salvar a tarefa ${error.message}`);
   }
 
-  addTaskInput.value = '';
-  startDateInput.value = '';
-  endDateInput.value = '';
+  addTaskInput.value = "";
+  startDateInput.value = "";
+  endDateInput.value = "";
 }
 
 function addTaskToUI(task) {
@@ -42,58 +41,58 @@ function addTaskToUI(task) {
 }
 
 function createTaskElement(task) {
-  const taskItem = document.createElement('div');
-  const taskText = document.createElement('span');
-  const editTask = createButton('Editar');
-  const deleteTask = createButton('Apagar');
+  const taskItem = document.createElement("div");
+  const taskText = document.createElement("span");
+  const editTask = createButton("Editar");
+  const deleteTask = createButton("Apagar");
 
-  const startDateLabel = document.createElement('label');
-  const startDateInput = document.createElement('input');
-  const endDateLabel = document.createElement('label');
-  const endDateInput = document.createElement('input');
+  const startDateLabel = document.createElement("label");
+  const startDateInput = document.createElement("input");
+  const endDateLabel = document.createElement("label");
+  const endDateInput = document.createElement("input");
 
-  taskItem.className = 'taskitem';
-  taskItem.setAttribute('data-task-id', task.id);
-  taskText.className = 'tasktext';
-  editTask.className = 'edittask';
-  deleteTask.className = 'deletetask';
-  startDateLabel.textContent = 'Início: ';
-  endDateLabel.textContent = 'Término: ';
+  taskItem.className = "taskitem";
+  taskItem.setAttribute("data-task-id", task.id);
+  taskText.className = "tasktext";
+  editTask.className = "edittask";
+  deleteTask.className = "deletetask";
+  startDateLabel.textContent = "Início: ";
+  endDateLabel.textContent = "Término: ";
 
-  taskText.textContent = task.descricao ?? 'Erro ao criar a tarefa!';
+  taskText.textContent = task.descricao ?? "Erro ao criar a tarefa!";
   startDateInput.value = task.dataInicio;
   endDateInput.value = task.dataFim;
 
-  startDateInput.setAttribute('readonly', '');
-  endDateInput.setAttribute('readonly', '');
+  startDateInput.setAttribute("readonly", "");
+  endDateInput.setAttribute("readonly", "");
 
   taskItem.appendChild(taskText);
   taskItem.appendChild(startDateLabel);
   taskItem.appendChild(startDateInput);
-  taskItem.appendChild(document.createElement('br'));
+  taskItem.appendChild(document.createElement("br"));
   taskItem.appendChild(endDateLabel);
   taskItem.appendChild(endDateInput);
   taskItem.appendChild(editTask);
   taskItem.appendChild(deleteTask);
 
-  deleteTask.addEventListener('click', async () => {
+  deleteTask.addEventListener("click", async () => {
     await removerTarefaAPI(task.id);
     taskPane.removeChild(taskItem);
   });
 
-  editTask.addEventListener('click', () => {
+  editTask.addEventListener("click", () => {
     editTaskText(taskText, startDateInput, endDateInput, task.id);
   });
   return taskItem;
 }
 
 function formatDate(dateString) {
-  const [year, month, day] = dateString.split('-');
-  return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
+  const [year, month, day] = dateString.split("-");
+  return `${year}-${month.padStart(2, "0")}-${day.padStart(2, "0")}`;
 }
 
 function createButton(text) {
-  const button = document.createElement('button');
+  const button = document.createElement("button");
   button.textContent = text;
   return button;
 }
@@ -115,47 +114,46 @@ async function editTaskApi(taskId, descricao, dataInicio, dataFim) {
 }
 
 function editTaskText(taskText, startDateInput, endDateInput, taskId) {
-  const descriptionInput = document.createElement('input');
+  const descriptionInput = document.createElement("input");
   descriptionInput.value = taskText.textContent;
 
   taskText.replaceWith(descriptionInput);
-  startDateInput.removeAttribute('readonly');
-  endDateInput.removeAttribute('readonly');
+  startDateInput.removeAttribute("readonly");
+  endDateInput.removeAttribute("readonly");
 
   descriptionInput.focus();
 
-  descriptionInput.addEventListener('blur', () => {
+  descriptionInput.addEventListener("blur", () => {
     taskText.textContent = descriptionInput.value;
-    // descriptionInput.replaceWith(taskText);
+    descriptionInput.replaceWith(taskText);
   });
 
-  descriptionInput.addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') {
+  descriptionInput.addEventListener("keypress", (e) => {
+    if (e.key === "Enter") {
       taskText.textContent = descriptionInput.value;
       descriptionInput.replaceWith(taskText);
     }
   });
 
-  [startDateInput, endDateInput].forEach((input) => {
-    input.addEventListener('blur', async () => {
+  [startDateInput, endDateInput].forEach(input => {
+    input.addEventListener("blur", async () => {
       const formattedStartDate = formatDate(startDateInput.value);
       const formattedEndDate = formatDate(endDateInput.value);
       startDateInput.value = formattedStartDate;
       endDateInput.value = formattedEndDate;
-      startDateInput.setAttribute('readonly', '');
-      endDateInput.setAttribute('readonly', '');
+      startDateInput.setAttribute("readonly", "");
+      endDateInput.setAttribute("readonly", "");
       await editTaskApi(taskId, descriptionInput.value, formattedStartDate, formattedEndDate);
     });
 
-    input.addEventListener('keypress', async (e) => {
-      console.log(e);
-      if (e.key === 'Enter') {
+    input.addEventListener("keypress", async (e) => {
+      if (e.key === "Enter") {
         const formattedStartDate = formatDate(startDateInput.value);
         const formattedEndDate = formatDate(endDateInput.value);
         startDateInput.value = formattedStartDate;
         endDateInput.value = formattedEndDate;
-        startDateInput.setAttribute('readonly', '');
-        endDateInput.setAttribute('readonly', '');
+        startDateInput.setAttribute("readonly", "");
+        endDateInput.setAttribute("readonly", "");
         await editTaskApi(taskId, descriptionInput.value, formattedStartDate, formattedEndDate);
       }
     });
@@ -163,12 +161,12 @@ function editTaskText(taskText, startDateInput, endDateInput, taskId) {
 }
 
 function showDialog(message) {
-  const alertBox = document.createElement('div');
-  alertBox.className = 'warning';
-  const span = document.createElement('span');
+  const alertBox = document.createElement("div");
+  alertBox.className = "warning";
+  const span = document.createElement("span");
   span.textContent = message;
-  const closeButton = createButton('x');
-  closeButton.addEventListener('click', () => error.removeChild(alertBox));
+  const closeButton = createButton("x");
+  closeButton.addEventListener("click", () => error.removeChild(alertBox));
   alertBox.appendChild(span);
   alertBox.appendChild(closeButton);
   error.appendChild(alertBox);
@@ -195,14 +193,14 @@ async function salvarTarefaAPI(descricao, dataInicio, dataFim) {
   });
   if (!response.ok) {
     showDialog('Erro ao salvar tarefa');
-    return null;
+    return null
   }
   const data = await response.json();
   return data;
 }
 
 async function removerTarefaAPI(taskId) {
-  const response = await fetch(`${apiUrl}/${taskId}`, {
+  const response = await fetch(apiUrl + `/${taskId}`, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
@@ -216,10 +214,10 @@ async function removerTarefaAPI(taskId) {
   return data;
 }
 
-document.addEventListener('DOMContentLoaded', async () => {
+document.addEventListener("DOMContentLoaded", async () => {
   try {
     const tasks = await buscarTarefas();
-    tasks.forEach((task) => addTaskToUI(task));
+    tasks.forEach(task => addTaskToUI(task));
   } catch (error) {
     showDialog(`Erro ao buscar as tarefas ${error.message}`);
   }
