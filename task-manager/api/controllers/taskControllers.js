@@ -3,18 +3,18 @@ const { createTask, updateTaks, getAllTasks, deleteTaskById } = require('../serv
 const taskControllers = {
   create: async (req, res) => {
     try {
-      const response = await createTask(req, res);
+      const response = await createTask(req.body);
       return res.status(201).json(response);
     } catch (error) {
-      return res.status(400).json({ msg: 'Erro ao criar task', erro: error });
+      return res.status(500).json({ msg: 'Erro ao criar task', erro: error.message });
     }
   },
   edit: async (req, res) => {
     try {
-      const response = await updateTaks(req, res);
+      const response = await updateTaks(req);
       return res.json(response);
     } catch (error) {
-      return res.send(`Erro ao editar:${error}`);
+      return res.status(500).json({ msg: `Erro ao editar task`, erro: error.message });
     }
   },
   delete: async (req, res) => {
@@ -23,7 +23,7 @@ const taskControllers = {
       const response = await deleteTaskById(idTask);
       return res.status(202).json(response);
     } catch (error) {
-      res.send(`Erro ao deletar task: ${error}`);
+      res.status(500).json({ msg: `Erro ao deletar task`, erro: error.message });
     }
   },
   get: async (req, res) => {
@@ -31,7 +31,7 @@ const taskControllers = {
       const response = await getAllTasks();
       return res.status(200).json(response);
     } catch (error) {
-      return res.status(400).send(`Erro: ${error}`);
+      return res.status(500).json({ msg: `Erro na solicitação`, erro: error.message });
     }
   },
 };
