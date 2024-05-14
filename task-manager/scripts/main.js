@@ -1,4 +1,3 @@
-// const apiUrl = 'https://mocki.io/v1/890c64c6-ce10-458c-b1b7-afefe475bc05';
 const apiUrl = 'http://localhost:3000/tasks';
 const addTaskInput = document.getElementById('addtaskinput');
 const startDateInput = document.getElementById('startdate');
@@ -24,9 +23,7 @@ async function onAddTaskButtonClick() {
     if (response) {
       const savedTask = response;
       addTaskToUI(savedTask);
-    } /* else {
-      showDialog('Erro ao salvar a tarefa');
-    } */
+    }
   } catch (error) {
     showDialog(`Erro ao salvar a tarefa ${error.message}`);
   }
@@ -126,7 +123,6 @@ function editTaskText(taskText, startDateInput, endDateInput, taskId) {
 
   descriptionInput.addEventListener('blur', () => {
     taskText.textContent = descriptionInput.value;
-    // descriptionInput.replaceWith(taskText);
   });
 
   descriptionInput.addEventListener('keypress', (e) => {
