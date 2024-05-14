@@ -1,10 +1,9 @@
 const Task = require('../../model/Tasks');
 
-const createTask = async (req, res) => {
-  const newTask = req.body;
-  return await Task.create(newTask);
+const createTask = async (task) => {
+  return await Task.create(task);
 };
-const updateTaks = async (req, res) => {
+const updateTaks = async (req) => {
   const idTask = req.params.id;
   return await Task.findByIdAndUpdate(idTask, req.body, { new: true });
 };
