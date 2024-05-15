@@ -4,12 +4,10 @@ const validaDescricao = (descricao) => {
     throw 'Descricao invalida';
   }
 };
-const isValidDate = (...date) => {
-  for (let i = 0; i < date.length; i++) {
-    let validDate = new Date(date[i]);
-    if (validDate.toString() === 'Invalid Date') {
-      throw 'Data inválida';
-    }
+const isValidDate = (date) => {
+  let validDate = new Date(date);
+  if (validDate.toString() === 'Invalid Date') {
+    throw 'Data inválida';
   }
 };
 
@@ -21,7 +19,7 @@ const verificaDataInicial = (value) => {
   }
 };
 
-const verificaMariorData = (dataInicio, dataFim) => {
+const verificaMaiorData = (dataInicio, dataFim) => {
   const inicio = new Date(dataInicio);
   const fim = new Date(dataFim);
   if (inicio >= fim) {
@@ -29,16 +27,9 @@ const verificaMariorData = (dataInicio, dataFim) => {
   }
 };
 const dateFormateFront = (data) => {
-  console.log('data ', data);
-  const ano = new Date(data).getFullYear();
-  console.log('ano ', ano);
-  const mes = new Date(data).getUTCMonth();
-  console.log('mes ', mes);
-  const dia = new Date(data).getDate();
-  console.log('dia ', dia);
-  const response = `${ano}-${mes}-${dia}`;
-  console.log('response erro', response);
+  const newDate = new Date(data);
+  const response = `${newDate.getFullYear()}-${newDate.getUTCMonth() + 1}-${newDate.getUTCDate()}`;
   return response;
 };
 
-module.exports = { validaDescricao, isValidDate, verificaDataInicial, verificaMariorData, dateFormateFront };
+module.exports = { validaDescricao, isValidDate, verificaDataInicial, verificaMaiorData, dateFormateFront };
