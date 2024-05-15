@@ -1,10 +1,12 @@
 const Task = require('../../model/Tasks');
+const { dateFormateFront } = require('../../util/tasks');
 
 const createTask = async (task) => {
   return await Task.create(task);
 };
 const updateTaks = async (req) => {
   const idTask = req.params.id;
+  console.log(req.body.dataInicio);
   return await Task.findByIdAndUpdate(idTask, req.body, { new: true });
 };
 const getAllTasks = async () => {
@@ -14,8 +16,8 @@ const getAllTasks = async () => {
     let task = {
       id: item._id,
       descricao: item.descricao,
-      dataInicio: item.dataInicio,
-      dataFim: item.dataFim,
+      dataInicio: dateFormateFront(item.dataInicio),
+      dataFim: dateFormateFront(item.dataFim),
     };
     tasks.push(task);
   });
