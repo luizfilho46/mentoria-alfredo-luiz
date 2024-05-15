@@ -1,4 +1,4 @@
-const { validaDescricao, isValidDate, verificaDataInicial, verificaMariorData } = require('../util/tasks');
+const { validaDescricao, isValidDate, verificaDataInicial, verificaMaiorData } = require('../util/tasks');
 
 const validaTask = (req, res, next) => {
   const { descricao, dataInicio, dataFim } = req.body;
@@ -7,7 +7,7 @@ try {
   isValidDate(dataInicio);
   isValidDate(dataFim);
   verificaDataInicial(dataInicio);
-  verificaMariorData(dataInicio, dataFim);
+  verificaMaiorData(dataInicio, dataFim);
   next();
 } catch (error) {
   res.status(500).json({msg:error})
