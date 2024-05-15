@@ -6,7 +6,6 @@ const createTask = async (task) => {
 };
 const updateTaks = async (req) => {
   const idTask = req.params.id;
-  console.log(req.body.dataInicio);
   return await Task.findByIdAndUpdate(idTask, req.body, { new: true });
 };
 const getAllTasks = async () => {
