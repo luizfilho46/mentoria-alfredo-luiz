@@ -1,30 +1,19 @@
-const hashTable = new Array(23);
+const hashTable = new Array(1000);
 
 function restoDivisao(element) {
-  return (indice = element % 23);
+  const indice = element % 1000;
+  return indice;
 }
 
 function adicionar(element) {
-  let ciclos = 0;
   let indice = restoDivisao(element);
-  while (hashTable[indice] !== undefined && ciclos < hashTable.length) {
-    indice = restoDivisao(indice + 1);
-    ciclos++;
-  }
   hashTable[indice] = element;
 }
 function buscar(element) {
-  let ciclos = 0;
   let indice = restoDivisao(element);
-  while (hashTable[indice] !== undefined) {
-    ciclos++;
-    if (hashTable[indice] === element) {
-      console.log(`Numero de ciclos: ${ciclos}`);
-
-      return indice;
-    } else {
-      indice = restoDivisao(indice + 1);
-    }
+  const value = hashTable[indice];
+  if (value !== undefined) {
+    return value;
   }
   return -1;
 }
@@ -40,6 +29,7 @@ adicionar(711);
 adicionar(20);
 adicionar(9);
 adicionar(10);
+adicionar(0);
 
 console.log(hashTable.toString());
-console.log(buscar(57));
+console.log(buscar(10));
